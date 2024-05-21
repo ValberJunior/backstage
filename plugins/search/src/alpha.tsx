@@ -68,6 +68,7 @@ import { createSearchResultListItemExtension } from '@backstage/plugin-search-re
 import { rootRouteRef } from './plugin';
 import { SearchClient } from './apis';
 import { SearchType } from './components/SearchType';
+import { SearchModal } from './components/SearchModal';
 import { UrlUpdater } from './components/SearchPage/SearchPage';
 import {
   compatWrapper,
@@ -240,6 +241,9 @@ export const searchNavItem = createNavItemExtension({
   routeRef: convertLegacyRouteRef(rootRouteRef),
   title: 'Search',
   icon: SearchIcon,
+  modal: ({ open, handleClose }) => {
+    return compatWrapper(<SearchModal open={open} toggleModal={handleClose} />);
+  },
 });
 
 /** @alpha */

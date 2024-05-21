@@ -29,8 +29,9 @@ export function createNavItemExtension(options: {
   routeRef: RouteRef<undefined>;
   title: string;
   icon: IconComponent;
+  modal?: (props: { open: boolean; handleClose: () => void }) => JSX.Element;
 }) {
-  const { routeRef, title, icon, namespace, name } = options;
+  const { icon, title, name, namespace, modal, routeRef } = options;
   return createExtension({
     namespace,
     name,
@@ -49,6 +50,7 @@ export function createNavItemExtension(options: {
         title: config.title,
         icon,
         routeRef,
+        modal,
       },
     }),
   });
@@ -61,5 +63,6 @@ export namespace createNavItemExtension {
     title: string;
     icon: IconComponent;
     routeRef: RouteRef<undefined>;
+    modal?: (props: { open: boolean; handleClose: () => void }) => JSX.Element;
   }>('core.nav-item.target');
 }

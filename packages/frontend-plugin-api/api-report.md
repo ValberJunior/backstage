@@ -593,6 +593,7 @@ export function createNavItemExtension(options: {
   routeRef: RouteRef<undefined>;
   title: string;
   icon: IconComponent_2;
+  modal?: (props: { open: boolean; handleClose: () => void }) => JSX.Element;
 }): ExtensionDefinition<{
   title: string;
 }>;
@@ -605,6 +606,9 @@ export namespace createNavItemExtension {
         title: string;
         icon: IconComponent_2;
         routeRef: RouteRef<undefined>;
+        modal?:
+          | ((props: { open: boolean; handleClose: () => void }) => JSX.Element)
+          | undefined;
       },
       {}
     >;
@@ -1166,6 +1170,14 @@ export function useRouteRef<TParams extends AnyRouteRefParams>(
 export function useRouteRefParams<Params extends AnyRouteRefParams>(
   _routeRef: RouteRef<Params> | SubRouteRef<Params>,
 ): Params;
+
+// @public
+export function useRouteRefResolver<TParams extends AnyRouteRefParams>(): (
+  routeRef?:
+    | RouteRef<TParams>
+    | SubRouteRef<TParams>
+    | ExternalRouteRef<TParams, any>,
+) => RouteFunc<TParams> | undefined;
 
 export { useTranslationRef };
 

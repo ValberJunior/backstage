@@ -469,6 +469,7 @@ const SidebarItemBase = forwardRef<
         {...childProps}
         ref={ref}
         onClick={handleClick}
+        disableRipple
       >
         {content}
       </Button>
