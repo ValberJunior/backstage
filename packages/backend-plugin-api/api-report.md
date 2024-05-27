@@ -70,13 +70,8 @@ export interface BackendFeature {
   $$type: '@backstage/BackendFeature';
 }
 
-// @public
-export interface BackendModuleConfig {
-  moduleId: string;
-  pluginId: string;
-  // (undocumented)
-  register(reg: BackendModuleRegistrationPoints): void;
-}
+// @public @deprecated (undocumented)
+export type BackendModuleConfig = CreateBackendModuleOptions;
 
 // @public
 export interface BackendModuleRegistrationPoints {
@@ -98,12 +93,8 @@ export interface BackendModuleRegistrationPoints {
   }): void;
 }
 
-// @public
-export interface BackendPluginConfig {
-  pluginId: string;
-  // (undocumented)
-  register(reg: BackendPluginRegistrationPoints): void;
-}
+// @public @deprecated (undocumented)
+export type BackendPluginConfig = CreateBackendPluginOptions;
 
 // @public
 export interface BackendPluginRegistrationPoints {
@@ -219,22 +210,43 @@ export namespace coreServices {
   const urlReader: ServiceRef<UrlReaderService, 'plugin'>;
   const // @deprecated
     identity: ServiceRef<IdentityService, 'plugin'>;
+  const events: ServiceRef<EventsService, 'plugin'>;
 }
 
 // @public
 export function createBackendModule(
-  config: BackendModuleConfig,
+  options: CreateBackendModuleOptions,
 ): () => BackendFeature;
+
+// @public
+export interface CreateBackendModuleOptions {
+  moduleId: string;
+  pluginId: string;
+  // (undocumented)
+  register(reg: BackendModuleRegistrationPoints): void;
+}
 
 // @public
 export function createBackendPlugin(
-  config: BackendPluginConfig,
+  options: CreateBackendPluginOptions,
 ): () => BackendFeature;
 
 // @public
+export interface CreateBackendPluginOptions {
+  pluginId: string;
+  // (undocumented)
+  register(reg: BackendPluginRegistrationPoints): void;
+}
+
+// @public
 export function createExtensionPoint<T>(
-  config: ExtensionPointConfig,
+  options: CreateExtensionPointOptions,
 ): ExtensionPoint<T>;
+
+// @public
+export interface CreateExtensionPointOptions {
+  id: string;
+}
 
 // @public
 export function createServiceFactory<
@@ -312,6 +324,29 @@ export interface DiscoveryService {
   getExternalBaseUrl(pluginId: string): Promise<string>;
 }
 
+// @public (undocumented)
+export interface EventParams<TPayload = unknown> {
+  eventPayload: TPayload;
+  metadata?: Record<string, string | string[] | undefined>;
+  topic: string;
+}
+
+// @public
+export interface EventsService {
+  publish(params: EventParams): Promise<void>;
+  subscribe(options: EventsServiceSubscribeOptions): Promise<void>;
+}
+
+// @public (undocumented)
+export type EventsServiceEventHandler = (params: EventParams) => Promise<void>;
+
+// @public (undocumented)
+export type EventsServiceSubscribeOptions = {
+  id: string;
+  topics: string[];
+  onEvent: EventsServiceEventHandler;
+};
+
 // @public
 export type ExtensionPoint<T> = {
   id: string;
@@ -320,10 +355,8 @@ export type ExtensionPoint<T> = {
   $$type: '@backstage/ExtensionPoint';
 };
 
-// @public
-export interface ExtensionPointConfig {
-  id: string;
-}
+// @public @deprecated (undocumented)
+export type ExtensionPointConfig = CreateExtensionPointOptions;
 
 // @public (undocumented)
 export interface HttpAuthService {
