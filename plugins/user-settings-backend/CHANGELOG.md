@@ -1,5 +1,20 @@
 # @backstage/plugin-user-settings-backend
 
+## 0.2.24-next.2
+
+### Patch Changes
+
+- 5d1670f: Update README installation instructions
+- Updated dependencies
+  - @backstage/backend-defaults@0.5.0-next.2
+  - @backstage/backend-plugin-api@0.9.0-next.2
+  - @backstage/config@1.2.0
+  - @backstage/errors@1.2.4
+  - @backstage/types@1.1.1
+  - @backstage/plugin-auth-node@0.5.2-next.2
+  - @backstage/plugin-signals-node@0.1.11-next.2
+  - @backstage/plugin-user-settings-common@0.0.1
+
 ## 0.2.24-next.1
 
 ### Patch Changes

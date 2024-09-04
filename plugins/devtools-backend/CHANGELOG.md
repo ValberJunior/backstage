@@ -1,5 +1,22 @@
 # @backstage/plugin-devtools-backend
 
+## 0.4.0-next.2
+
+### Patch Changes
+
+- 5d1670f: Update README installation instructions
+- Updated dependencies
+  - @backstage/backend-common@0.25.0-next.2
+  - @backstage/backend-plugin-api@0.9.0-next.2
+  - @backstage/cli-common@0.1.14
+  - @backstage/config@1.2.0
+  - @backstage/config-loader@1.9.0
+  - @backstage/errors@1.2.4
+  - @backstage/types@1.1.1
+  - @backstage/plugin-devtools-common@0.1.12
+  - @backstage/plugin-permission-common@0.8.1
+  - @backstage/plugin-permission-node@0.8.3-next.2
+
 ## 0.4.0-next.1
 
 ### Patch Changes
